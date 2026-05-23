@@ -89,6 +89,54 @@ Install it for Claude Code by copying that folder into your skills directory:
 cp -r metaphactory-automation ~/.claude/skills/
 ```
 
+### Using the skill
+
+**In Claude Code (recommended).** Once installed, Claude loads it automatically
+whenever a task matches — e.g. *"write a Playwright script to create a
+vocabulary in metaphactory"* or *"my metaphactory script's Create button stays
+disabled, fix it."* You can also invoke it explicitly with the slash command
+`/metaphactory-automation`. Claude then has the helper library, the verified
+selectors, and the framework gotchas in context, and will use them when writing
+or debugging your automation.
+
+**Using the helper library directly (no Claude needed).** `mf_helpers.py` is a
+plain Python module you can import:
+
+```python
+from playwright.sync_api import sync_playwright
+from mf_helpers import (
+    login, navigate, create_asset_dialog,
+    create_top_concept, create_narrower_concept,
+    set_concept_status, git_save, sparql_update, dismiss_modals,
+)
+
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=False)
+    ctx = browser.new_context(viewport={"width": 1920, "height": 1080})
+    ctx.grant_permissions(["clipboard-read", "clipboard-write"])
+    page = ctx.new_page()
+
+    login(page, "http://localhost:10214", "admin", "admin")
+    navigate(page, "http://localhost:10214/resource/Assets:Vocabularies")
+    page.locator('button:has-text("Create")').first.click()
+    create_asset_dialog(page, "Vegetables", asset_type="vocabulary")
+    create_top_concept(page, "Vegetables", "All vegetables used in recipes")
+    create_narrower_concept(page, "Vegetables", "Carrot", "Root vegetable")
+    set_concept_status(page, "Carrot", "In review")
+    git_save(page)
+```
+
+Run the bundled end-to-end example the same way:
+
+```bash
+cd metaphactory-automation
+python3 example.py --url http://localhost:10214 --user admin --pass admin --headed
+```
+
+See [`metaphactory-automation/reference.md`](metaphactory-automation/reference.md)
+for the full helper list, selector tables, the page-URL map, the editorial
+workflow, and a symptom→fix table.
+
 ## Notes
 
 - Selectors are confirmed for metaphactory 5.10.0. On other versions, re-probe
