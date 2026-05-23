@@ -19,6 +19,7 @@ instances.
 | `v2/mf_tasks.py` | One function per certification task |
 | `v2/mf_templates.py` | HTML/SPARQL template strings for the templating tasks |
 | `v2/run.py` | CLI runner (`--task`, `--track`, `--url`, `--headed`) |
+| `metaphactory-automation/` | Claude Code **skill** packaging the helpers + the gotchas (see below) |
 | `module-catalog.md` | Full crawl of the training modules and their example markup |
 | `tutorial.py`, `training-certification.py` | Earlier monolithic scripts (round 1) |
 | `explore-*.py`, `debug-*.py` | One-off exploration/diagnostic scripts |
@@ -76,8 +77,17 @@ each. The non-obvious rules baked into `v2/mf_helpers.py`:
 - **`networkidle` never settles** — wrap waits and continue.
 - **IRI conflicts** from ghost data linger after deletes — use a unique IRI.
 
-These patterns are also packaged as a reusable Claude Code skill
-(`metaphactory-automation`).
+These patterns are also packaged as a reusable Claude Code skill in
+[`metaphactory-automation/`](metaphactory-automation/) — `SKILL.md` (overview +
+quick reference), `mf_helpers.py` (the helper library), `reference.md` (full
+selector tables and failure→fix guide), and `example.py` (runnable end-to-end
+example).
+
+Install it for Claude Code by copying that folder into your skills directory:
+
+```bash
+cp -r metaphactory-automation ~/.claude/skills/
+```
 
 ## Notes
 
