@@ -1,0 +1,664 @@
+
+============================================================
+PAGE: :BusinessTraining-chapter1
+============================================================
+
+Business user tutorial to semantic knowledge modelingVisual ontology modeling
+Visual ontology modeling
+Goal
+
+At the end of this chapter the goal is:
+
+Understand the visual ontology modelling interface
+Use the visual ontology modelling interface to create ontologies
+Chapter structure
+Part 1: Demo video
+
+This section will introduce you to metaphactory's visual ontology modeling interface.
+
+Open
+Part 2: Demo video
+
+This section will demonstrate how ontologies can be created using metaphactory's visual ontology modeling interface.
+
+Open
+Part 3: Exercises
+
+This section will guide you through the process of creating your own ontologies using a series of hands-on exercises.
+
+Open
+Knowledge Graph & AI Platform by metaphacts
+
+============================================================
+PAGE: :BusinessTraining-chapter2
+============================================================
+
+Business user tutorial to semantic knowledge modelingVocabulary & taxonomy management
+Vocabulary & taxonomy management
+Goal
+
+At the end of this chapter, you will have created a new vocabulary that provides status terms used for projects.
+
+Chapter structure
+Part 1: Demo video
+
+This section will introduce you to metaphactory's vocabulary management interface.
+
+Open
+Part 2: Demo video
+
+This section will demonstrate vocabularies can be created using metaphactory's vocabulary management interface.
+
+Open
+Part 2: Exercises
+
+This section will guide you through the process of creating your own vocabulary using a series of hands-on exercises.
+
+Open
+Knowledge Graph & AI Platform by metaphacts
+
+============================================================
+PAGE: :BusinessTraining-chapter3
+============================================================
+
+Business user tutorial to semantic knowledge modelingInterlinking ontologies & vocabularies
+Interlinking ontologies & vocabularies
+Goal
+
+At the end of this chapter, you will have interlinked classes in your Project ontology with the Status vocabulary, thus configuring your system to populate instances of those classes with terms from these vocabularies.
+
+Chapter structure
+Part 1: Demo video
+
+This section will provide an overview of how ontologies and vocabularies can be interlinked in metaphactory.
+
+Open
+Part 2: Exercises
+
+This section will guide you through the process of linking a class in your ontology with a controlled vocabulary.
+
+Open
+Knowledge Graph & AI Platform by metaphacts
+
+============================================================
+PAGE: :BusinessTraining-chapter5
+============================================================
+
+Business user tutorial to semantic knowledge modelingInstance data management
+Instance data management
+Goal
+
+At the end of this chapter, you will have extended your knowledge graph by adding new instances.
+
+Chapter structure
+Part 1: Demo video
+
+This section will explain how you can use metaphactory's semantic forms and visual instance authoring component to edit and add new data to your knowledge graph.
+
+Open
+Part 2: Exercises
+
+This section will guide you through the process of adding new instance data to your knowledge graph.
+
+Open
+Knowledge Graph & AI Platform by metaphacts
+
+============================================================
+PAGE: training:AppBuildingBasicsTemplatingExercises
+============================================================
+
+App Building BasicsTemplating MechanismCreating An Application Template
+Creating An Application Template
+
+This section will guide you through the process of creating your first application page. You can follow the steps below in a new tab.
+
+Go to the System Administration space (settings icon located in the application header)
+Click on Template & Application Pages
+In the input field immediately below You can use the following form to create a new page, enter a full IRI (or an abbreviated one) for the page you want to create. For instance, use http://example.org/resource/myFirstAppPage.
+Click on Validate, to check if this IRI can be used, and then on Create Page.
+
+You will be redirected to metaphactory's template editor to start writing your own low-code template.
+
+Copy and paste the snippet below which inserts a title for your first page.
+Copy
+
+    <div class="page">
+      <div class="page__body">
+        <h1> My first application page built with metaphactory </h1>
+      </div>
+    </div>
+
+Press Save & View
+
+The final result should look like this:
+
+info Need a hint?
+Demo video
+Creating a resource template
+Knowledge Graph & AI Platform by metaphacts
+
+============================================================
+PAGE: training:AppBuildingBasicsSemComponentsExercises1
+============================================================
+
+ button in the center of the page, then go to the Applicable Templates section in the right-hand panel and follow the link labeled: Template:https://ontologies.metaphacts.com/organization-ontology/Person.
+Copy the snippet below to define a new page layout.
+Press Save & View
+
+The template's code structures content into two main sections. The first section contains a semantic-query, a semantic-table, and a semantic-chart, all of which are currently placeholders that will be implemented in following exercises. The second section displays a graph with a basic CONSTRUCT query for the target entity within the graph visualization component (i.e. ontodia).
+
+Copy
+
+      <div class="page">
+        <div class='page__body'>
+          <!-- Section 1 -->
+            <h5>Date of Birth</h5>
+            <br/>
+            <h5>Friends</h5>
+            <br/>
+            <h5>Knowns /is known by persons</h5>
+            <br/>
+          
+          <!-- Section 2 -->
+            <h5>Person relations</h5>
+            <br/>
+        </div>
+      </div>    
+    
+
+
+The final result should look like this: 
+Demo video
+Adding a semantic-query
+Knowledge Graph & AI Platform by metaphacts
+
+============================================================
+PAGE: training:AppBuildingBasicsEventsExercises1
+============================================================
+
+ button in the center of the page, then go to the Applicable Templates section in the right-hand panel and follow the link labeled: Template:https://ontologies.metaphacts.com/organization-ontology/Person.
+Copy the next snippet below the Person relations header to define a graph to visualise who knows who.
+Press Save & View
+
+The code in the snippet include the graph with a basic CONSTRUCT query for the target entity in the graph visualization component.
+
+Copy
+
+    <!-- Date of Birth -->
+    <!-- Friends -->
+    <!-- Knowns /is known by persons -->
+
+    <h5>Person relations</h5>
+    <div class='grid-demo' style='flex: 1; height: 400px'>
+    <ontodia 
+      query='
+        CONSTRUCT { 
+          <{{page-resource}}>  ?p ?o 
+        } 
+        WHERE { 
+          <{{page-resource}}> ?p ?o  
+        }'
+      confirm-navigation='false'>
+      <ontodia-canvas id='canvas'></ontodia-canvas>
+      </ontodia>
+    </div>
+
+
+The final result should look like this:
+
+Demo video
+Working with events in templates
+Knowledge Graph & AI Platform by metaphacts
+
+============================================================
+PAGE: training:AdvSecurity
+============================================================
+
+App building advancedSecurity & permissionsApps packing & lifecycleFederationAdvanced data authoringSemantic search frameworkModule summary
+Contents
+Security & permissions
+Overview
+Checking permissions
+Exercise 1: Creating a user with pre-defined roles
+Exercise 2: Editing a user to grant additional permissions by using composable role fragments
+Summary
+Security & permissions
+
+metaphactory includes a set of pre-defined roles and permissions for access and permission control required by applications. In this section, you will explore the pre-defined roles. Moreover, you will learn how to compose roles using fragments and thus restrict certain actions, behaviors or UI elements.
+
+metaphactory relies on the Apache Shiro security framework to implement the security layer.
+
+Overview
+
+The platform bundles a set of pre-defined roles but, if required for specific application use cases, it allows you to define custom roles with respective sets of fine-granular permissions. These roles can be defined using apps or in the runtime storage. Once roles are defined, they can be mapped to users. The pre-defined roles that come with metaphactory are:
+
+end-user: a user with minimal permissions for restricted application access.
+knowledge-steward: a user that is primarily curating ontologies, vocabularies and instance data.
+knowledge-graph-engineer: a user responsible for ontology management and data quality.
+application-engineer: a user responsible for creating applications.
+admin: a technical power user with access to most application and administration functionality.
+root: role for the super user to grant full access.
+
+metaphactory also provides a mechanism for the composition of roles by means of reusable role fragments. For example, the role end-user gives minimal permissions for restricted application access; however, if you want to give a user with an end-user role access to explore the vocabularies loaded in the platform, you can create a new custom role, let's say end-user-vocabulary, and assign it the pre-defined role end-user along with the pre-defined role fragment vocabulary-view.
+
+If none of the reusable fragments fit your use case, you can also define fine-granular permissions and thus create new role fragments by associating permission strings to them. For example, the string sparql:default:query:select grants permission to execute SPARQL on the given default repository. The definition of custom roles fragments to assign permission strings is out of scope for this training.
+
+
+
+Checking permissions
+
+Roles and permissions given to a current user can be checked in metaphactory by following these steps:
+
+Click on person located in the application header.
+Select the user name from the dropdown.
+
+On the User Profile > Platform Roles page, you will see the roles assigned. You can also check particular permissions by going to Permission Check tab.
+
+Click on User Profile > Permission Check tab.
+Enter the permission string sparql:default:query:select to check if the current configuration grants permission to execute SPARQL on the given default repository.
+Press Check.
+
+A message indicating Permitted should appear below. Otherwise, you will get Not permitted.
+
+
+
+Exercise 1: Creating a user with pre-defined roles
+
+In this exercise, you will create a new end user and assign it the appropriate pre-defined role. To do that, follow the steps below:
+
+Click on settingsSystem Administration > located in the application header.
+Click on admin_panel_settingsSecurity.
+In the Local Users tab, create a new account by filling out the fields Principal, Password and Repeat Password.
+From the Roles dropdown, select end-user.
+Click Create.
+
+You can log in into the platform with this new user and follow the steps above to check the current role and permission strings.
+
+
+
+Exercise 2: Editing a user to grant additional permissions by using composable role fragments
+
+The end user created above has minimal permissions for navigating the current application. For example, they do not have access to either ontologies or vocabularies. In this exercise, you will edit the end user and assign it a new role fragment to grant access to the vocabularies loaded in the platform. To do that, follow the steps below:
+
+Click on settingsSystem Administration > located in the application header.
+Click on admin_panel_settingsSecurity.
+In the Local Users tab, click on the Edit button for the end user created previously.
+In the Update Account form, select vocabulary-view from the Roles dropdown.
+Click on Update button.
+
+You can log in into the platform with this updated user account and validate the new permissions by exploring the vocabulary catalog.
+
+
+
+Summary
+
+Throughout these step-by-step exercises, you have learned how to create users in metaphactory, assign them roles, and compose roles by reusing pre-defined role fragments.
+
+The next steps in this module include Apps packing and lifecycle, Advanced data authoring, Semantic search framework and Federation, wh
+
+============================================================
+PAGE: training:AdvAppLifeCycle
+============================================================
+
+App building advancedSecurity & permissionsApps packing & lifecycleFederationAdvanced data authoringSemantic search frameworkModule summary
+Contents
+Apps packing & lifecycle
+Overview
+Exercise 1: Exploring the anatomy of a metaphactory app
+Summary
+Apps packing & lifecycle
+
+metaphactory offers simple extension points to deploy lightweight apps along with the platform without the need to change the platform binary or re-compile the platform. An app is a customer or domain-specific platform add-on and contains: application and template pages, configuration - such as RDF namespaces, system settings, etc., as well as look and feel customizations - such as CSS files, images, header and footer resources, etc. In this section, you will explore the anatomy of a basic metaphactory app.
+
+Deploying an app by uploading a ZIP artifact works with out-of-the-box metaphactory deployment.
+
+Overview
+
+To navigate to the installed app in the platform, follow these steps:
+
+Click on settingsSystem Administration > located in the application header.
+Click on appsApps & Storages.
+
+On this page, you will see all of the apps installed on this system, for example, the training-app, which includes all of the templates and settings created for this training. Moreover, each app is also associated to a storage.
+
+A couple of actions can be executed from here. If you want to remove the training-app, you can press Remove and then restart metaphactory. This action will remove all the templates and settings included in this training app. Moreover, if you want to deploy another app using out-of-the-box metaphactory deployment, for example, a branding app including specific styling, you can press Upload & Deploy App, select the respective *.zip artifact from the file system, and restart the plataform. Finally, you also can download any app by using the Export ZIP option.
+
+
+
+Exercise 1: Exploring the anatomy of a metaphactory app
+
+The tree below illustrates the basic folder structure of an app:
+
+my-app
+plugin.properties   - this is the only mandatory file
+/config
+/page-layout   - Files marked in red will be read or shadowed by files from other apps, others are merged entirely
+/html-head.hbs
+/header.hbs
+/footer.hbs
+/login.hbs
+/internal_server_error.hbs (and similar errors)
+html-header-resources.hbs
+/ui.prop   - Properties will be read selectively or shadowed individually
+/environment.prop   - Properties will be read selectively or shadowed individually
+/global.prop   - Properties will be read selectively or shadowed individually
+/namespaces.prop   - Properties will be read selectively or shadowed individually
+/assets   - Entire files will be read or shadowed by files from other apps. Files will become directly available under http://platform-url.com/assets/my-styles.css
+/images   - Entire files will be read or shadowed by files from other apps. Files will become directly available under http://platform-url.com/images/my-image.png
+/my-app-logo.png
+...
+/no_auth   - These files are not protected, for example, images for the login pages. Files will become directly available under http://platform-url.com/no_auth/login-logo.png
+...
+/data
+/templates   - Entire files will be read or shadowed by files from other apps.
+Template%3Ahttps%3A%2F%2Fontologies.metaphacts.com%2Forganization-ontology%2FPerson.html
+...
+
+In the following, you can navigate the anatomy of the training-app:
+
+training-app
+plugin.properties
+/data
+/templates
+Template%3Ahttps%3A%2F%2Fontologies.metaphacts.com%2Forganization-ontology%2FPerson.html
+http%3A%2F%2Fwww.metaphacts.com%2Fresource%2FStart.html
+...
+
+
+Summary
+
+Throughout this section, you have learnt how metaphactory's lightweight app mechanism works and what apps look like.
+
+The next steps in this module include Federation, Advanced data authoring and Semantic search framework, where you will explore advanced semantic form and search configuartions, as well as mechanisms for extending the knowledge graph using Wikidata.
+
+
+
+
+Documentation
+
+Learn more about app installation and lifecycle in metaphactory.
+Blog post: "The composable enterprise powered by metaphactory".
+Explore the Nobel Prize app .
+Explore the Wikidata app .
+
+Knowledge Graph & AI Platform by metaphacts
+
+============================================================
+PAGE: training:AppBuildingAdvFederation
+============================================================
+
+App building advancedSecurity & permissionsApps packing & lifecycleFederationAdvanced data authoringSemantic search frameworkModule summary
+Contents
+Federation
+Overview
+Exercise 1: Getting information from external RDF datasets
+Summary
+Federation
+
+Depending on the application use case, there is often a need to query data stored in multiple RDF repositories and even augment it with information from other services. This can be done by using federation technologies and SPARQL for executing distributed queries over several endpoints. Throughout this exercise, you will learn how to execute these queries and use some services provided by metaphactory.
+
+SPARQL 1.1 Federation implements the SERVICE call, aiming at allowing users to direct a sub-query to a specific SPARQL endpoint and combining the results with the ones from the rest of the query.
+
+Overview
+
+The platform incorporates two federation engines tailored towards data integration from multiple sources: Ephedra and FedX . The first is provided by metaphactory while the second one has been implemented as part of the RDF4J Framework, which is an open source modular Java framework for working with RDF data.
+
+In particular, Ephedra operates on top of the platform repository manager and allows you to send SPARQL 1.1 federated queries over several repositories. Based on that, metaphactory offers default built services on which it is possible to execute distributed queries. For example, one of them is the Entity Lookup, which is intended for the interactive lookup of entities in the graph, i.e., to look up an entity based on relevant names for disambiguation.
+
+Some examples of federation include the combination of data from several SPARQL endpoints, the enrichment of local data with information from other (hybrid) data sources, database agnostic search through an entity lookup service, and transparent federation of a Linked Data Browser.
+
+
+
+Exercise 1: Getting information from external RDF datasets
+
+In this exercise by executing a federated query on metaphactory's Wikidata demo system, you will obtain additional information about significant events whose inception year matches the Roy's year of birth.
+
+Open the SPARQL editor.
+Copy and paste the snippet below.
+Copy
+
+PREFIX org: <https://ontologies.metaphacts.com/organization-ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+SELECT DISTINCT ?event ?label ?description ?inception_date
+WHERE {
+  <https://ontologies.metaphacts.com/organization-ontology/Person/instances/20f4b8a7-0a99-421f-a52c-747d89d77996> org:hasBirthday ?date .
+  SERVICE <https://wikidata.metaphacts.com/sparql> {
+    ?event a <http://www.wikidata.org/prop/novalue/P793> .
+    ?event <http://www.wikidata.org/prop/direct/P571> ?inception_date .
+    ?event rdfs:label ?label .
+    ?event schema:description ?description .
+    FILTER(year(?inception_date) = year(?date)) .
+    FILTER(LANG(?label) = "en" && LANG(?description) = "en") .
+  }
+}
+    
+
+The whole federated query is executed on the Wikidata side (https://wikidata.metaphacts.com/sparql) and returned to your metaphactory instance with significant events incepted in 1982 together with their labels and description (in English)
+
+
+
+Summary
+
+Throughout these step-by-step exercises, you have learnt how federation is implemented in metaphactory and how it can also be used to augment and extend your data.
+
+The next step includes Advanced data authoring.
+
+
+
+
+Documentation
+
+Learn more about federation in metaphactory.
+Blog post: "Federation in metaphactory".
+SPARQL 1.1. Federation.
+Explore the Wikidata app .
+
+Knowledge Graph & AI Platform by metaphacts
+
+============================================================
+PAGE: training:AdvDataAuthoring
+============================================================
+
+App building advancedSecurity & permissionsApps packing & lifecycleFederationAdvanced data authoringSemantic search frameworkModule summary
+Contents
+Advanced data authoring
+Overview
+Exercise 1: Creating a form using manual fields
+Exercise 2: Adding additional fields to a form
+Exercise 3: Adding query patterns to a form
+Summary
+Advanced data authoring
+
+As introduced in the previous metaphactory Basics module, data authoring involves the creation, modification and deletion of instances of classes in the knowledge graph. While this can be done entirely model-driven using ontologies or using auto-generated forms in an application page, the manual definition of fields make the form look and behave exactly as required. Throughout the step-by-step exercises specified below, you will learn how to configure a form defining manual fields and using query patterns.
+
+When a manual field definition is given, that manual definition completely overrides any auto-generated field definition for a field with the same identifier.
+
+Overview
+
+metaphactory's Semantic Form is a highly configurable component for creating of authoring forms. The semantic-form component has the option to specify field definitions manually by means of the attribute fields, which expects a JSON object array of field definitions. Moreover, these definitions provide an abstraction over the ontology by specifying SPARQL patterns as well as specifying certain validation constraints such as datatypes, cardinalities or pattern matches against existing database entries. The following code shows a blueprint for a manual form, which will be used as a template for the next exercises.
+
+Copy
+
+    <semantic-form
+    fields='[
+    {
+      "id": "name",
+      "label": "Name",
+    <!-- define 1 or more patterns -->
+      "READPATTERN": "SELECT $value WHERE { $subject <http://www.w3.org/2000/01/rdf-schema#label> ?value }"
+      "WRITEPATTERN": "INSERT { $subject <http://www.w3.org/2000/01/rdf-schema#label> ?value } WHERE {}"
+    },
+    {...} ]'>
+    <!-- define placeholders and input type for each field -->
+    <semantic-form-INPUTTYPE for="name"> </semantic-form-INPUTTYPE>
+    <!--...-->
+    <!-- define buttons, or form helpers --> 
+    <button> Submit </button>
+    <!--...-->
+    </semantic-form>
+
+
+
+Exercise 1: Creating a form using manual fields
+
+This first exercise aims at wrapping an input field within a form and creating a new graph with triples defining me as a org:Person, and my name. To do that, you will define a new field and a child element semantic-form-text-input. Follow the steps below:
+
+Open a new application page in the Template editor.
+Copy and paste the snippet in the page and save.
+
+You will see the new form with the field Full Name, which is the label of the field specified in the snippet, together with the form buttons submit and reset.
+
+Revisiting the code, you can observe that the semantic-form set an IRI for the new individual, new-subject-template, and an action to be executed after submitting the new values, post-action. Moreover, the attribute fields define the datatype for the field and an insertPattern query to update the new triples.
+
+Copy
+
+    <div class="page">
+      <div class='page__body'>
+
+        <semantic-form 
+          form-id='basic-example' 
+          new-subject-template='http://www.example.com/person/id/{{me}}'
+          post-action='redirect'
+          fields='[
+          {
+                "id": "me",
+                "label": "Full Name",
+                "xsdDatatype": "xsd:string",
+                "insertPattern": "INSERT { ?subject a org:Person; rdfs:label ?value } WHERE {}"
+          }]'>
+
+          <semantic-form-text-input for="me" placeholder='Enter your name'></semantic-form-text-input>
+
+          <div class="semantic-form-footer-buttons">
+            <button name="submit" class="btn btn-primary">Submit</button>
+            <button name="reset" class="btn btn-secondary">Reset</button>
+          </div>
+        </semantic-form>         
+  </div>
+</div>
+
+
+
+Exercise 2: Adding additional fields to a form
+
+To take even more control over the fields that a form displays, you will add cardinality constraints and two additional fields configured to autosuggest values.
+
+Open the previous page to edit.
+Copy and paste the next snippet to add min/max cardinality constraints for the first field me.
+Copy
+
+<semantic-form 
+  fields='[
+        {      
+            "id": "me", 
+        <!--SNIP-->
+            "minOccurs": "1",
+            "maxOccurs": "1",
+        <!--SNIP-->
+            "label": "...",
+        }"
+        }]'>
+
+</semantic-form>         
+
+Copy and paste the snippet below to add two more fields: one using the autosuggestionPattern query to search for persons and another one using valueSetPattern which prefetch values.
+Copy
+
+    <semantic-form 
+      fields='[
+            {      
+                "id": "me",
+                "..."         
+            },                     
+            {
+                "id": "knows",
+       
+
+============================================================
+PAGE: training:AdvSemanticSearchFramework
+============================================================
+
+App building advancedSecurity & permissionsApps packing & lifecycleFederationAdvanced data authoringSemantic search frameworkModule summary
+Contents
+Semantic search framework
+Overview
+Exercise 1: Creating a search page using the search wizard with default settings
+Exercise 2: Editing a search configuration to add a new class
+Exercise 3: Creating a search page using the search wizard and selecting attributes and relations
+Exercise 4: Adding a custom facet to a search page
+Exercise 5: Customizing the results visualization of a search page
+Search services
+Summary
+Semantic search framework
+
+metaphactory's semantic search is a customizable and composable framework for defining complex information needs, refining results using facets and visualizing them in different ways. In this section, you'll learn how to create a basic search page and customize it according to your use case.
+
+Overview
+
+The semantic search environment (semantic-search) represents the main wrapper component defining the parameters of the whole search scenario. The environment consists of a few sections: the search profile (search-profile), which defines the categories and relations that are used across other search components, the search definition components (for example, the semantic-search-query-universal component), allowing the user to express information needs and generate the initial query, the faceted filtering components, which allow the user to further refine the search request by means of different faceted views, and the results visualization components that visualize the search results in different ways.
+
+To start working on a new search, you can create and edit a new application page. In that page, you can write a search configuration from scratch starting with a skeleton, which looks like this:
+
+Copy
+<semantic-search id="search1" search-profile="...">
+      <!-- 1. search profile configuration -->
+      <semantic-search-query-universal id="search-definition">
+        <!-- 2. search definition -->
+      </semantic-search-query-universal>
+
+      <!-- 3. faceting -->
+      <semantic-search-facet-store id="facet"></semantic-search-facet-store>
+      <semantic-search-facet-group></semantic-search-facet-group>
+
+      <semantic-search-result-holder>
+        <semantic-search-result>
+          <!-- 4. result visualization -->
+          <!-- it is possible to use any semantic-* visualization component to
+        visualize search results, e.g semantic-table -->
+          <semantic-table id="table" query="..."></semantic-table>
+        </semantic-search-result>
+      </semantic-search-result-holder>
+    </semantic-search>
+
+Otherwise, you can start using the metaphactory wizard to help you with bootstrapping your search configuration. The wizard is invoked using the Configuration Wizards dropdown at the top of the Page Editor. After selecting Search Wizard..., you can click on Create new configuration to start configuring a fresh search. Note that you can also continue a previous search configuration or load it from an external JSON file.
+
+
+
+Exercise 1: Creating a search page using the search wizard with default settings
+
+The aim of this exercise is to use the search wizard to create a search configuration with the default settings, meaning you will configure your search with a model-driven search profile which will be created at runtime, based on the domain (or domains) selected. To do that, follow the next steps:
+
+Edit a new application page.
+Invoke the search wizard and start creating a new configuration.
+For Step 1 in the Configuration process, keep the value as set by default.
+Do the same for Count Query Optimization.
+Go to next step by clicking on Next: Select classes
+Navigate the Agent in Available classes for selection hierarchy and select Person.
+Click on Use selected classes → to add this target domain to the configuration.
+Go to the next step by clicking on Next: Generate configuration.
+You can explore the configuration generated and/or go to next step Next: Insert configuration.
+
+Your search configuration will be inserted into your application page, which should look like this:
+
+Copy
+{{> Platform:SearchResultsFragments::defaultStyle}}
+    <semantic-search id="search1" search-profile='{
+  "loadByDomains": [
+    "<https://ontologies.metaphacts.com/organization-ontology/Person>"
+  ]
+}'>
+      <semantic-search-query-universal id="universal-search">
+      </semantic-search-query-universal>
+      <semantic-search-facet-store id="facet"></semantic-search-facet-store>
+      <semantic-search-result-group template="{{> searchResultGroupTemplate}}">
+        <template id="searchResultGroupTemplate">
+          <div class="searchTopMenu">
+            {{> Platform:SearchResultsFragments::startButton}}
+            {{> Platform:SearchResultsFragments::clearDomain}}
+          </div>
+          {{> Platform:SearchResultsFragments::searchResultGroupTemplate
+          showDomainSelector=false
+          showExplorationFacets=true
+        }}
+        </t
